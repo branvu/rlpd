@@ -15,6 +15,7 @@ def wrap_pixels(
     num_stack: Optional[int] = 3,
     camera_id: int = 0,
     pixel_keys: Tuple[str, ...] = ("pixels",),
+    pixels_only=False
 ) -> gym.Env:
     if action_repeat > 1:
         env = RepeatAction(env, action_repeat)
@@ -24,7 +25,7 @@ def wrap_pixels(
 
     env = PixelObservationWrapper(
         env,
-        pixels_only=True,
+        pixels_only=pixels_only,
         render_kwargs={
             "pixels": {
                 "height": image_size,
